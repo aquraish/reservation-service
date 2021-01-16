@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "27633a49-76d2-43cf-997f-b5341b53c7e3",
-		"name": "Campsite Reservation",
-		"description": "These set of requests would enable users to manage campsite reservations",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-	},
+    "_postman_id": "c6caab33-7968-4542-ad56-a480526d0c04",
+    "name": "Campsite Reservation",
+    "description": "These set of requests would enable users to manage campsite reservations",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
 	"item": [
 		{
 			"name": "Check availability",
@@ -21,33 +21,35 @@
 					}
 				}
 			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"startDate\": \"\",\r\n    \"endDate\": \"\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://{{host}}:{{port}}/reservation/camp",
-					"protocol": "http",
-					"host": [
-						"{{host}}"
-					],
-					"port": "{{port}}",
-					"path": [
-						"reservation",
-						"camp"
-					]
-				}
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"startDate\": \"2021-01-27\",\r\n    \"endDate\": \"2021-01-28\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://{{host}}:{{port}}/reservations",
+          "protocol": "http",
+          "host": [
+            "{{host}}"
+          ],
+          "port": "{{port}}",
+          "path": [
+            "reservations"
+          ]
+        }
 			},
 			"response": []
 		},
@@ -70,14 +72,14 @@
 				"method": "POST",
 				"header": [],
 				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"\",\r\n    \"firstName\": \"\",\r\n    \"lastName\": \"\",\r\n    \"arrivalDate\": \"\",\r\n    \"departureDate\": \"\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
+          "mode": "raw",
+          "raw": "{\r\n    \"email\": \"abc@xyz.com\",\r\n    \"firstName\": \"Adil\",\r\n    \"lastName\": \"Quraish\",\r\n    \"arrivalDate\": \"2021-01-27\",\r\n    \"departureDate\": \"2021-01-28\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
 				"url": {
 					"raw": "http://{{host}}:{{port}}/reservations/reservation",
 					"protocol": "http",
@@ -109,27 +111,29 @@
 				}
 			],
 			"request": {
-				"method": "PUT",
-				"header": [],
-				"url": {
-					"raw": "http://{{host}}:{{port}}/reservations/reservation/:id",
-					"protocol": "http",
-					"host": [
-						"{{host}}"
-					],
-					"port": "{{port}}",
-					"path": [
-						"reservations",
-						"reservation",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": ""
-						}
-					]
-				}
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"id\": 1,\n    \"email\": \"abc@xyz.com\",\n    \"firstName\": \"Adil\",\n    \"lastName\": \"Quraish\",\n    \"arrivalDate\": \"2021-01-28\",\n    \"departureDate\": \"2021-01-29\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://{{host}}:{{port}}/reservations/reservation",
+          "protocol": "http",
+          "host": [
+            "{{host}}"
+          ],
+          "port": "{{port}}",
+          "path": [
+            "reservations",
+            "reservation"
+          ]
+        }
 			},
 			"response": []
 		},
@@ -152,23 +156,17 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://{{host}}:{{port}}/reservations/reservation/:id",
-					"protocol": "http",
-					"host": [
-						"{{host}}"
-					],
-					"port": "{{port}}",
-					"path": [
-						"reservations",
-						"reservation",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": ""
-						}
-					]
+          "raw": "http://{{host}}:{{port}}/reservations/reservation/1",
+          "protocol": "http",
+          "host": [
+            "{{host}}"
+          ],
+          "port": "{{port}}",
+          "path": [
+            "reservations",
+            "reservation",
+            "1"
+          ]
 				}
 			},
 			"response": []
