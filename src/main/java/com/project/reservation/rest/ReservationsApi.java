@@ -21,6 +21,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.Date;
+import java.util.List;
+
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-01-09T19:06:38.954Z[GMT]")
 public interface ReservationsApi {
 
@@ -30,7 +33,7 @@ public interface ReservationsApi {
     @RequestMapping(value = "/reservations",
         consumes = {"application/json"},
         method = RequestMethod.POST)
-    ResponseEntity<Boolean> checkAvailability(
+    ResponseEntity<List<Date>> checkAvailability(
         @Parameter(in = ParameterIn.DEFAULT, description = "", schema = @Schema()) @Valid @RequestBody
             ReservationDates reservationDates);
 

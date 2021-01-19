@@ -1,12 +1,14 @@
 package com.project.reservation.dao;
 
 import com.project.reservation.entity.Reservation;
-import java.util.Date;
-import java.util.List;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+
+import java.util.List;
 
 public interface ReservationDao extends CrudRepository<Reservation, Long> {
 
-    List<Reservation> findByArrivalDateAndDepartureDate(Date arrivalDate, Date departureDate);
+    @Query(value = "SELECT r FROM Reservation r WHERE r.arrivalDate > CURRENT_DATE OR r.departureDate > CURRENT_DATE")
+    List<Reservation> findExistingBookings();
 
 }

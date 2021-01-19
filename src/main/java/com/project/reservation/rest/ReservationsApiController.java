@@ -14,6 +14,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
+import java.util.List;
+
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-01-09T19:06:38.954Z[GMT]")
 @RestController
 @Data
@@ -28,7 +31,7 @@ public class ReservationsApiController implements ReservationsApi {
 
     private final ReservationService reservationService;
 
-    public ResponseEntity<Boolean> checkAvailability(ReservationDates reservationDates) {
+    public ResponseEntity<List<Date>> checkAvailability(ReservationDates reservationDates) {
         return ResponseEntity.ok(reservationService.checkAvailability(reservationDates));
     }
 
