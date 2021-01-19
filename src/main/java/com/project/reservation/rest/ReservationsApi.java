@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -33,7 +35,7 @@ public interface ReservationsApi {
     @RequestMapping(value = "/reservations",
         consumes = {"application/json"},
         method = RequestMethod.POST)
-    ResponseEntity<List<Date>> checkAvailability(
+    ResponseEntity<List<LocalDate>> checkAvailability(
         @Parameter(in = ParameterIn.DEFAULT, description = "", schema = @Schema()) @Valid @RequestBody
             ReservationDates reservationDates);
 

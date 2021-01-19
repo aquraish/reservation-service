@@ -14,6 +14,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -31,7 +33,7 @@ public class ReservationsApiController implements ReservationsApi {
 
     private final ReservationService reservationService;
 
-    public ResponseEntity<List<Date>> checkAvailability(ReservationDates reservationDates) {
+    public ResponseEntity<List<LocalDate>> checkAvailability(ReservationDates reservationDates) {
         return ResponseEntity.ok(reservationService.checkAvailability(reservationDates));
     }
 

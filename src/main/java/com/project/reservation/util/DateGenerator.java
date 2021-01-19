@@ -5,6 +5,8 @@ import org.springframework.util.CollectionUtils;
 
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.List;
@@ -14,7 +16,7 @@ import java.util.stream.Stream;
 @Component
 public class DateGenerator {
 
-    public List<Date> getDates(Date startDate, Date endDate, List<Date> bookedDates) {
+        public List<LocalDate> getDates(Date startDate, Date endDate, List<Date> bookedDates) {
 
         long numOfDays = ChronoUnit.DAYS.between(startDate.toInstant(), endDate.toInstant());
 
@@ -28,8 +30,9 @@ public class DateGenerator {
                         .collect(Collectors.toList());
 
         if (CollectionUtils.isEmpty(bookedDates)) {
-            return listOfDates;
+            return listOfDates.stream().map(x -> x.toInstant().atZone(ZoneId.systemDefault()).toLocalDate()).collect(Collectors.toList());
         } else {
+            //Logic to determine available dates
             return null;
         }
     }

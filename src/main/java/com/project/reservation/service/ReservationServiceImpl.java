@@ -15,6 +15,9 @@ import org.springframework.util.CollectionUtils;
 import javax.validation.Valid;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -32,7 +35,7 @@ public class ReservationServiceImpl implements ReservationService {
     private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DATE_FORMAT);
 
     @Override
-    public List<Date> checkAvailability(@Valid ReservationDates reservationDates) {
+    public List<LocalDate> checkAvailability(@Valid ReservationDates reservationDates) {
 
         Date arrivalDate = getArrivalDate(reservationDates);
         Date departureDate = getDepartureDate(reservationDates);
@@ -41,11 +44,11 @@ public class ReservationServiceImpl implements ReservationService {
                 reservationDao.findExistingBookings();
 
         List<Date> bookedDates = reservations.stream()
-                .map(d -> d.getArrivalDate())
+                .map(Reservation::getArrivalDate)
                 .collect(Collectors.toList());
 
 
-        List<Date> generatedDates = dateGenerator.getDates(arrivalDate, departureDate, bookedDates);
+        List<LocalDate> generatedDates = dateGenerator.getDates(arrivalDate, departureDate, bookedDates);
 
         return generatedDates;
     }
